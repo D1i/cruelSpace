@@ -1,0 +1,14 @@
+.screen {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+}
+
+
+.playerContainer {
+    padding: 10px;
+}
