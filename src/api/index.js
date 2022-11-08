@@ -1,0 +1,1 @@
+export {endpoints, api as API} from './api';
