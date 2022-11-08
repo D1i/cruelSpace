@@ -1,0 +1,34 @@
+.container {
+    padding: 10px;
+}
+.header {
+    font-size: 2.5em;
+    width: 1200px;
+    margin: auto;
+    padding-bottom: 100px;
+}
+
+.labelContainer {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    max-width: 200px;
+    margin: auto;
+}
+
+.selectFraction > div {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.selectFraction > div:first-child > div {
+    display: flex;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.selectFraction > div:first-child > div:hover {
+    box-shadow: #000 2px 3px 10px;
+    transform: scale(1.2);
+}
