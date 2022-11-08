@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Button, TextField} from "@mui/material";
+import axios from "axios";
 
 export function AdminPanel(props) {
     const [id, setId] = useState('');
@@ -8,6 +9,19 @@ export function AdminPanel(props) {
     const [atomicMass, setAtomicMass] = useState('');
     const [mass3m, setMass3m] = useState('');
 
+    const [elements, setElements] = useState([]);
+
+
+    function addElement() {
+        axios.post('http://localhost:9990/elements/add', {
+            token: localStorage.getItem('token'),
+            elem: {id, name, mendel, atomicMass, mass3m}
+        }).then(p => {
+            setElements(p.data.map(element =>
+                <div>{`id: ${element.id}, name: ${element.name}, mendel: ${element.mendel}, atomicMass: ${element.atomicMass}, mass3m: ${element.mass3m}`}</div>))
+        })
+
+    }
 
     return (
         <div>
@@ -31,12 +45,12 @@ export function AdminPanel(props) {
                         <div>Масса одного куба вещества: <TextField onChange={(event) => {
                             setMass3m(event.target.value)
                         }}/></div>
-                        <Button>Создать</Button>
+                        <Button onClick={addElement}>Создать</Button>
                     </div>
                 </div>
                 <div>
                     <b>Список всех элеметов</b>
-                    <div></div>
+                    <div>{elements}</div>
                 </div>
             </div>
         </div>
