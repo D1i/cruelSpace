@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Button, TextField} from "@mui/material";
 import axios from "axios";
 
@@ -20,8 +20,18 @@ export function AdminPanel(props) {
             setElements(p.data.map(element =>
                 <div>{`id: ${element.id}, name: ${element.name}, mendel: ${element.mendel}, atomicMass: ${element.atomicMass}, mass3m: ${element.mass3m}`}</div>))
         })
-
     }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            axios.post('http://localhost:9990/elements/get', {token: localStorage.getItem('token'),}).then(p => {
+                setElements(p.data.map(element =>
+                    <div>{`id: ${element.id}, name: ${element.name}, mendel: ${element.mendel}, atomicMass: ${element.atomicMass}, mass3m: ${element.mass3m}`}</div>
+                ));
+            });
+        }, 2000);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div>
